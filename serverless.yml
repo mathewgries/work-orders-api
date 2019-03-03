@@ -8,6 +8,12 @@ plugins:
 # serverless-webpack configuration
 # Enable auto-packing of external modules
 custom:
+  stage: ${opt:stage, self:provider.stage}
+  tableName: ${self:custom.stage}-workorders
+  tableThroughputs:
+    prod: 5
+    default: 1
+  tableThroughput: ${self:custom.tableThroughputs.${self:custom.stage}, self:custom.tableThroughputs.default}
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
@@ -20,6 +26,9 @@ provider:
 
   # 'iamRoleStatement' defines the permission policy for the Lambda function.
   # In this case Lambda functions are granted with permissions to access DynamoDB.
+  environment:
+    tableName: ${self:custom.tableName}
+
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -30,7 +39,10 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
-      Resource: "arn:aws:dynamodb:us-east-1:*:*"
+      # Restrict our IAM role permissions to
+      # the specific table for the stage
+      Resource:
+        - "Fn::GetAtt": [ WorkordersTable, Arn ]
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
@@ -43,7 +55,7 @@ functions:
     handler: create.main
     events:
       - http:
-          path: work-orders
+          path: workorders
           method: post
           cors: true
           authorizer: aws_iam
@@ -55,7 +67,7 @@ functions:
     handler: get.main
     events:
       - http:
-          path: work-orders/{id}
+          path: workorders/{id}
           method: get
           cors: true
           authorizer: aws_iam
@@ -67,7 +79,7 @@ functions:
     handler: list.main
     events:
       - http:
-          path: work-orders
+          path: workorders
           method: get
           cors: true
           authorizer: aws_iam
@@ -79,7 +91,7 @@ functions:
     handler: update.main
     events:
       - http:
-          path: work-orders/{id}
+          path: workorders/{id}
           method: put
           cors: true
           authorizer: aws_iam
@@ -91,7 +103,7 @@ functions:
     handler: delete.main
     events:
       - http:
-          path: work-orders/{id}
+          path: workorders/{id}
           method: delete
           cors: true
           authorizer: aws_iam
@@ -99,3 +111,5 @@ functions:
 resources:
   # API Gateway Errors
   - ${file(resources/api-gateway-errors.yml)}
+  # dynamodb table
+  - ${file(resources/dynamodb-table.yml)}
