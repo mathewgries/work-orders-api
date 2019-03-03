@@ -1,4 +1,4 @@
-service: notes-app-api
+service: work-orders-api
 
 # Use the serverless-webpack plugin to transpile ES6
 plugins:
@@ -15,7 +15,7 @@ custom:
 provider:
   name: aws
   runtime: nodejs8.10
-  stage: prod
+  stage: dev
   region: us-east-1
 
   # 'iamRoleStatement' defines the permission policy for the Lambda function.
@@ -43,7 +43,7 @@ functions:
     handler: create.main
     events:
       - http:
-          path: notes
+          path: work-orders
           method: post
           cors: true
           authorizer: aws_iam
@@ -55,7 +55,7 @@ functions:
     handler: get.main
     events:
       - http:
-          path: notes/{id}
+          path: work-orders/{id}
           method: get
           cors: true
           authorizer: aws_iam
@@ -67,7 +67,7 @@ functions:
     handler: list.main
     events:
       - http:
-          path: notes
+          path: work-orders
           method: get
           cors: true
           authorizer: aws_iam
@@ -79,7 +79,7 @@ functions:
     handler: update.main
     events:
       - http:
-          path: notes/{id}
+          path: work-orders/{id}
           method: put
           cors: true
           authorizer: aws_iam
@@ -91,7 +91,7 @@ functions:
     handler: delete.main
     events:
       - http:
-          path: notes/{id}
+          path: work-orders/{id}
           method: delete
           cors: true
           authorizer: aws_iam
