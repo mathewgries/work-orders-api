@@ -4,12 +4,16 @@ import { success, failure } from "./libs/response-lib";
 
 export async function main(event, context) {
   const data = JSON.parse(event.body);
+  const { content } = data
   const params = {
     TableName: process.env.tableName,
     Item: {
       userId: event.requestContext.identity.cognitoIdentityId,
       workorderId: uuid.v1(),
-      content: data.content,
+      title: content.title,
+      client: content.client,
+      contact: content.contact,
+      description: content.description,
       attachment: data.attachment,
       createdAt: Date.now()
     }
