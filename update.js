@@ -18,7 +18,7 @@ export async function main(event, context) {
     ExpressionAttributeValues: {
       ":attachment": data.attachment || null,
       ":title": data.title || null,
-      ":client": data.clietn || null,
+      ":client": data.client || null,
       ":contact": data.contact || null,
       ":description": data.description || null
     },
