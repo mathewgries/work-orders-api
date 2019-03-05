@@ -26,13 +26,9 @@ export async function main(event, context) {
   };
 
   try {
-    console.log('Params: ', params)
-    console.log('Calling DB')
     const result = await dynamoDbLib.call("update", params);
-    console.log('Result: ', result)
     return success({ status: true });
   } catch (e) {
-    console.log('Error: ', e.message)
     return failure({ status: false });
   }
 }
