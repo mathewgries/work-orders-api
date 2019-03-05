@@ -1,0 +1,70 @@
+                                NOTES:
+
+Address: 
+        Should addresses be in their own table with a type 
+        field (Billing, Home, Office), and include the address 
+        id as a set in the appropriate table (Users, Client)
+        or should we have have them as maps in the necessary table?
+
+Clients: 
+    Type: "residential", "commercial"
+          Dropdown selection to hardcode type for consistency
+
+WorkOrdersItems:
+    Type: "Labor", "Material", "Miscelaneous"
+
+------------------------------------------------------------------------------\
+------------------------------------------------------------------------------\
+
+                                Tables:
+
+Users:
+|      Field       |   Type   | Primary Key |    GSI   |
+--------------------------------------------------------
+|      userId      |  String  |    HASH     |          |
+|     username     |  String  |             |          |
+|     Addresses    |   Set    |             |          |
+
+
+Workorders:
+|   Field          |   Type   | Primary Key |    GSI   |
+--------------------------------------------------------
+|   workorderId    |  String  |    HASH     |          |
+|     userId       |  String  |    RANGE    |          |
+|      title       |  String  |             |          |
+|      client      |  String  |             |          |
+|     contact      |  String  |             |          |
+|   description    |  String  |             |          |
+
+
+WorkOrdersItems
+|      Field       |   Type   | Primary Key |    GSI   |
+--------------------------------------------------------
+|      itemId      |  String  |    HASH     |          |
+|    workorderid   |  String  |             |          |
+|     itemType     |  String  |    RANGE    |   HASH   |
+|    description   |  String  |             |          |
+|     quantity     |  Number  |             |          |
+|    unitPrice     |  Number  |             |          |
+|    totalAmount   |  Number  |             |   RANGE  |
+
+
+Clients:
+|      Field       |   Type   | Primary Key |    GSI   |
+--------------------------------------------------------
+|     clientId     |  String  |    HASH     |          |
+|    clientName    |  String  |             |          |
+|     Addresses    |   Set    |             |          |
+|     contacts     |   Set    |             |          |
+|    clientType    |  String  |             |          |
+|   phoneNumbers   |  String  |             |          |
+
+
+Contacts:
+|       Field      |   Type   | Primary Key  |    GSI   |
+---------------------------------------------------------
+|    contactId     |  String  |    HASH      |          |
+|   contactName    |  String  |              |          |
+|      email       |  String  |              |          |
+|   phoneNumbers   |   Set    |              |          |
+| preferredContact |  String  |              |          |
