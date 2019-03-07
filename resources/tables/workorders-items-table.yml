@@ -18,7 +18,7 @@ Resources:
         - AttributeName: workorderId
           KeyType: RANGE
       LocalSecondaryIndexes:
-        - IndexName: workordersItemsLSI
+        - IndexName: workordersItemsUserLSI
           KeySchema:
             - AttributeName: itemId
               KeyType: HASH
@@ -26,11 +26,19 @@ Resources:
               KeyType: RANGE
           Projection: 
             ProjectionType: ALL
-        - IndexName: workordersItemsLSI
+        - IndexName: workordersItemsWorkorderLSI
           KeySchema:
             - AttributeName: itemId
               KeyType: HASH
             - AttributeName: workorderId
+              KeyType: RANGE
+          Projection: 
+            ProjectionType: ALL
+        - IndexName: workordersItemsClientLSI
+          KeySchema:
+            - AttributeName: itemId
+              KeyType: HASH
+            - AttributeName: clientId
               KeyType: RANGE
           Projection: 
             ProjectionType: ALL
