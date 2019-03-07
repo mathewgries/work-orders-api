@@ -4,7 +4,7 @@ import { success, failure } from '../../libs/response-lib'
 export async function main(event, context) {
     const params = {
         TableName: process.env.workordersClientsTable,
-        KeyConditionExpression: "userId = :userId",
+        KeyConditionExpression: "userId = :userId, clientId = :clientId",
         ExpressionAttributeValues: {
             ":userId": event.requestContext.identity.cognitoIdentityId
         }
