@@ -53,6 +53,7 @@ Clients:
 |      Field       |   Type   | Primary Key |    GSI   |
 --------------------------------------------------------
 |     clientId     |  String  |    HASH     |          |
+|      userId      |          |             |          |
 |    clientName    |  String  |             |          |
 |     Addresses    |   Set    |             |          |
 |     contacts     |   Set    |             |          |
@@ -61,10 +62,25 @@ Clients:
 
 
 Contacts:
-|       Field      |   Type   | Primary Key  |    GSI   |
+|      Field       |   Type   | Primary Key  |    GSI   |
 ---------------------------------------------------------
 |    contactId     |  String  |    HASH      |          |
+|      userId      |  String  |    RANGE     |          |
 |   contactName    |  String  |              |          |
 |      email       |  String  |              |          |
 |   phoneNumbers   |   Set    |              |          |
 | preferredContact |  String  |              |          |
+
+Address:
+|      Field       |   Type   | Primary Key  |    GSI   |
+---------------------------------------------------------
+|    AddressId     |  String  |    HASH      |          |
+|    clientId      |  String  |    RANGE     |          |
+|      userId      |  String  |              |          |
+|   addressType    |  String  |              |          |
+|      line1       |  String  |              |          |
+|      line2       |  String  |              |          |
+|      city        |  String  |              |          |
+|      state       |  String  |              |          |
+|       zip        |  String  |              |          |
+|      country     |  String  |              |          |

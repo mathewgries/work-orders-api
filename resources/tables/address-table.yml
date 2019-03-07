@@ -1,0 +1,19 @@
+Resources:
+  WorkordersAddressTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:custom.workordersAddressTable}
+      AttributeDefinitions:
+        - AttributeName: userId
+          AttributeType: S
+        - AttributeName: clientId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: userId
+          KeyType: HASH
+        - AttributeName: workorderId
+          KeyType: RANGE
+      # Set the capacity based on the stage
+      ProvisionedThroughput:
+        ReadCapacityUnits: ${self:custom.tableThroughput}
+        WriteCapacityUnits: ${self:custom.tableThroughput}
