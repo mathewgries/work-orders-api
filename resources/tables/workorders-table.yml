@@ -1,5 +1,5 @@
 Resources:
-  WorkordersMainTable:
+  WorkordersTable:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName: ${self:custom.workordersTable}
