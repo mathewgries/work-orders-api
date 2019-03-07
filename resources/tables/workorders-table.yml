@@ -1,8 +1,8 @@
 Resources:
-  WorkordersTable:
+  WorkordersMainTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: ${self:custom.workordersTable}
+      TableName: ${self:custom.workordersOrdersTable}
       AttributeDefinitions:
         - AttributeName: userId
           AttributeType: S
