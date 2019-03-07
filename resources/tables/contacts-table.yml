@@ -24,7 +24,7 @@ Resources:
               KeyType: RANGE
           Projection: 
             ProjectionType: ALL
-          ProvisionedThroughputs:
+          ProvisionedThroughput:
             ReadCapacityUnits: ${self:custom.tableThroughput}
             WriteCapacityUnits: ${self:custom.tableThroughput}
       # Set the capacity based on the stage
