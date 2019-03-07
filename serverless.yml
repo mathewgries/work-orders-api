@@ -57,8 +57,8 @@ provider:
         - "Fn::GetAtt": [ WorkordersAddressTable, Arn]
 
 # functions:
-  # - ${file(functions/workorders/functions.yml)}
-  # - ${file(functions/clients/functions.yml)}
+  - ${file(functions/workorders/functions.yml)}
+  - ${file(functions/clients/functions.yml)}
   
 resources:
   # API Gateway Errors
