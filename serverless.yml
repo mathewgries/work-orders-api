@@ -9,7 +9,7 @@ plugins:
 # Enable auto-packing of external modules
 custom:
   stage: ${opt:stage, self:provider.stage}
-  workordersOrdersTable: ${self:custom.stage}-workordersOrders
+  workordersTable: ${self:custom.stage}-workorders
   workordersClientsTable: ${self:custom.stage}-workorderClients
   workordersItemsTable: ${self:custom.stage}-workorderItems
   workordersContactsTable: ${self:custom.stage}-workorderContacts 
@@ -30,7 +30,7 @@ provider:
   # 'iamRoleStatement' defines the permission policy for the Lambda function.
   # In this case Lambda functions are granted with permissions to access DynamoDB.
   environment:
-    workordersOrdersTable: ${self:custom.workordersOrdersTable}
+    workordersTable: ${self:custom.workordersTable}
     workordersClientsTable: ${self:custom.workordersClientsTable}
     workordersItemsTable: ${self:custom.workordersItemsTable}
     workordersContactsTable: ${self:custom.workordersContactsTable} 
@@ -48,7 +48,7 @@ provider:
       # Restrict our IAM role permissions to
       # the specific table for the stage
       Resource:
-        - "Fn::GetAtt": [ WorkordersOrdersTable, Arn ]
+        - "Fn::GetAtt": [ WorkordersTable, Arn ]
         - "Fn::GetAtt": [ WorkordersClientsTable, Arn]
         - "Fn::GetAtt": [ WorkordersItemsTable, Arn]
         - "Fn::GetAtt": [ WorkordersContactsTable, Arn]
