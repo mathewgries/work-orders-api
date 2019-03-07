@@ -18,10 +18,10 @@ Resources:
       LocalSecondaryIndexes:
         - IndexName: contactsLSI
           KeySchema:
-          - AttributeName: contactId
-            KeyType: HASH
-          - AttributeName: clientId
-            KeyType: RANGE
+            - AttributeName: contactId
+              KeyType: HASH
+            - AttributeName: clientId
+              KeyType: RANGE
           Projection: 
             ProjectionType: ALL
       # Set the capacity based on the stage
