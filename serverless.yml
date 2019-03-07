@@ -58,6 +58,7 @@ provider:
 
 functions:
   - ${file(functions/workorders/functions.yml)}
+  - ${file(functions/clients/functions.yml)}
   
 resources:
   # API Gateway Errors
