@@ -56,8 +56,8 @@ resources:
   # dynamodb tables
   - ${file(resources/tables/workorders-table.yml)}
   - ${file(resources/tables/clients-table.yml)}
-  - ${file(resources/workorders-items-table.yml)}
-  - ${file(resources/contacts-table.yml)}
+  - ${file(resources/tables/workorders-items-table.yml)}
+  - ${file(resources/tables/contacts-table.yml)}
   # S3
   - ${file(resources/buckets/s3-bucket.yml)}
   # Cognito
