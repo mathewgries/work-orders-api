@@ -32,8 +32,8 @@ Resources:
               KeyType: HASH
             - AttributeName: workorderId
               KeyType: RANGE
-            Projection: 
-              ProjectionType: ALL
+          Projection: 
+            ProjectionType: ALL
       # Set the capacity based on the stage
       ProvisionedThroughput:
         ReadCapacityUnits: ${self:custom.tableThroughput}
