@@ -11,19 +11,22 @@ Resources:
         - AttributeName: clientId
           AttributeType: S
       KeySchema:
-        - AttributeName: contactId
-          KeyType: HASH
         - AttributeName: userId
+          KeyType: HASH
+        - AttributeName: contactId
           KeyType: RANGE
-      LocalSecondaryIndexes:
-        - IndexName: contactsLSI
+      GlobalSecondaryIndexes:
+        - IndexName: contactsGSI
           KeySchema:
-            - AttributeName: contactId
-              KeyType: HASH
             - AttributeName: clientId
+              KeyType: HASH
+            - AttributeName: contactId
               KeyType: RANGE
           Projection: 
             ProjectionType: ALL
+          ProvisionedThroughputs:
+            ReadCapacityUnits: ${self:custom.tableThroughput}
+            WriteCapacityUnits: ${self:custom.tableThroughput}
       # Set the capacity based on the stage
       ProvisionedThroughput:
         ReadCapacityUnits: ${self:custom.tableThroughput}
