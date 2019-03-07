@@ -1,0 +1,63 @@
+# Defines an HTTP API endpoint that calls the main function in create.js
+# - path: url path is /address
+# - method: POST request
+# - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
+#     domain api call
+# - authorizer: authenticate using the AWS IAM role
+
+createAddress:
+  handler: functions/address/createAddress.main
+  events:
+    - http:
+        path: address
+        method: post
+        cors: true
+        authorizer: aws_iam
+
+getAddress:
+  # Defines an HTTP API endpoint that calls the main function in get.js
+  # - path: url path is /address/{id}
+  # - method: GET request
+  handler: functions/address/getAddress.main
+  events:
+    - http:
+        path: address/{id}
+        method: get
+        cors: true
+        authorizer: aws_iam
+
+listAddresses:
+  # Defines an HTTP API endpoint that calls the main function in list.js
+  # - path: url path is /address
+  # - method: GET request
+  handler: functions/address/listAddresses.main
+  events:
+    - http:
+        path: address
+        method: get
+        cors: true
+        authorizer: aws_iam
+
+updateAddress:
+  # Defines an HTTP API endpoint that calls the main function in update.js
+  # - path: url path is /address/{id}
+  # - method: PUT request
+  handler: functions/address/updateAddress.main
+  events:
+    - http:
+        path: address/{id}
+        method: put
+        cors: true
+        authorizer: aws_iam
+
+deleteAddress:
+  # Defines an HTTP API endpoint that calls the main function in delete.js
+  # - path: url path is /address/{id}
+  # - method: DELETE request
+  handler: functions/address/deleteAddress.main
+  events:
+    - http:
+        path: address/{id}
+        method: delete
+        cors: true
+        authorizer: aws_iam

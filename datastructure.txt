@@ -41,12 +41,14 @@ WorkOrdersItems
 |      Field       |   Type   | Primary Key |    GSI   |
 --------------------------------------------------------
 |      itemId      |  String  |    HASH     |          |
+|       userId     |  String  |             |          |
 |    workorderid   |  String  |             |          |
+|      clientId    |  String  |             |          |
 |     itemType     |  String  |    RANGE    |   HASH   |
 |    description   |  String  |             |          |
 |     quantity     |  Number  |             |          |
 |    unitPrice     |  Number  |             |          |
-|    totalAmount   |  Number  |             |   RANGE  |
+|      total       |  Number  |             |   RANGE  |
 
 
 Clients:

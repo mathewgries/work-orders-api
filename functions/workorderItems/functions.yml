@@ -1,0 +1,62 @@
+# Defines an HTTP API endpoint that calls the main function in create.js
+# - path: url path is /workorderItems
+# - method: POST request
+# - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
+#     domain api call
+# - authorizer: authenticate using the AWS IAM role
+createWorkorderItems:
+  handler: functions/workorderItems/createWorkorderItem.main
+  events:
+    - http:
+        path: workorderItems
+        method: post
+        cors: true
+        authorizer: aws_iam
+
+getWorkorderItems:
+  # Defines an HTTP API endpoint that calls the main function in get.js
+  # - path: url path is /workorderItems/{id}
+  # - method: GET request
+  handler: functions/workorderItems/getWorkorderItem.main
+  events:
+    - http:
+        path: workorderItems/{id}
+        method: get
+        cors: true
+        authorizer: aws_iam
+
+listWorkorderItems:
+  # Defines an HTTP API endpoint that calls the main function in list.js
+  # - path: url path is /workorderItems
+  # - method: GET request
+  handler: functions/workorderItems/listWorkorderItems.main
+  events:
+    - http:
+        path: workorderItems
+        method: get
+        cors: true
+        authorizer: aws_iam
+
+updateWorkorderItem:
+  # Defines an HTTP API endpoint that calls the main function in update.js
+  # - path: url path is /workorderItems/{id}
+  # - method: PUT request
+  handler: functions/workorderItems/updateWorkorderItem.main
+  events:
+    - http:
+        path: workorderItems/{id}
+        method: put
+        cors: true
+        authorizer: aws_iam
+
+deleteWorkorderItem:
+  # Defines an HTTP API endpoint that calls the main function in delete.js
+  # - path: url path is /workorderItems/{id}
+  # - method: DELETE request
+  handler: functions/workorderItems/deleteWorkorderItem.main
+  events:
+    - http:
+        path: workorderItems/{id}
+        method: delete
+        cors: true
+        authorizer: aws_iam

@@ -1,0 +1,62 @@
+# Defines an HTTP API endpoint that calls the main function in create.js
+# - path: url path is /contacts
+# - method: POST request
+# - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
+#     domain api call
+# - authorizer: authenticate using the AWS IAM role
+createContact:
+  handler: functions/contacts/createContact.main
+  events:
+    - http:
+        path: contacts
+        method: post
+        cors: true
+        authorizer: aws_iam
+
+getContact:
+  # Defines an HTTP API endpoint that calls the main function in get.js
+  # - path: url path is /contacts/{id}
+  # - method: GET request
+  handler: functions/contacts/getContact.main
+  events:
+    - http:
+        path: contacts/{id}
+        method: get
+        cors: true
+        authorizer: aws_iam
+
+listContacts:
+  # Defines an HTTP API endpoint that calls the main function in list.js
+  # - path: url path is /contacts
+  # - method: GET request
+  handler: functions/contacts/listContacts.main
+  events:
+    - http:
+        path: contacts
+        method: get
+        cors: true
+        authorizer: aws_iam
+
+updateContact:
+  # Defines an HTTP API endpoint that calls the main function in update.js
+  # - path: url path is /contacts/{id}
+  # - method: PUT request
+  handler: functions/contacts/updateContact.main
+  events:
+    - http:
+        path: contacts/{id}
+        method: put
+        cors: true
+        authorizer: aws_iam
+
+deleteContact:
+  # Defines an HTTP API endpoint that calls the main function in delete.js
+  # - path: url path is /contacts/{id}
+  # - method: DELETE request
+  handler: functions/contacts/deleteContact.main
+  events:
+    - http:
+        path: contacts/{id}
+        method: delete
+        cors: true
+        authorizer: aws_iam
