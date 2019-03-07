@@ -1,7 +1,7 @@
 import * as dynamodbLib from '../../libs/dynamodb-lib'
 import { success, failure } from '../../libs/response-lib'
 
-export async function main(event, context){
+export async function main(event, context) {
     const params = {
         TableName: process.env.workordersClientsTable,
         KeyConditionExpression: "userId = :userId",
@@ -11,9 +11,10 @@ export async function main(event, context){
     }
 
     try {
-        const results = await dynamodbLib.call("query", params)
-        return success(results.Items)
+        const result = await dynamodbLib.call("query", params)
+        return success(result.Items)
     } catch (e) {
-        return failure({ status: false})
+        console.log("Failure: ", e.message)
+        return failure({ status: false })
     }
 }
