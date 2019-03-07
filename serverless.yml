@@ -43,7 +43,9 @@ provider:
       # the specific table for the stage
       Resource:
         - "Fn::GetAtt": [ WorkordersTable, Arn ]
-        - "Fn::GetAtt": [ ClientsTable, Arn]
+        - "Fn::GetAtt": [ WorkordersClientsTable, Arn]
+        - "Fn::GetAtt": [ WorkordersItemsTable, Arn]
+        - "Fn::GetAtt": [ WorkordersContactsTable, Arn]
 
 functions:
   - ${file(functions/workorders/functions.yml)}
