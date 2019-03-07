@@ -11,7 +11,7 @@ custom:
   stage: ${opt:stage, self:provider.stage}
   workordersTable: ${self:custom.stage}-workorders
   workordersClientsTable: ${self:custom.stage}-workorderClients
-  workorderItemsTable: ${self:custom.stage}-workorderItems
+  workordersItemsTable: ${self:custom.stage}-workorderItems
   workordersContactsTable: ${self:custom.stage}-workorderContacts 
   tableThroughputs:
     prod: 5
@@ -31,9 +31,9 @@ provider:
   # In this case Lambda functions are granted with permissions to access DynamoDB.
   environment:
     workordersTable: ${self:custom.workordersTable}
-    workordersClientsTable: ${self:custom.workorderClientsTable}
-    workorderItemsTable: ${self:custom.workorderItemsTable}
-    workordersContactsTable: ${self:custom.workorderContactsTable} 
+    workordersClientsTable: ${self:custom.workordersClientsTable}
+    workordersItemsTable: ${self:custom.workordersItemsTable}
+    workordersContactsTable: ${self:custom.workordersContactsTable} 
 
   iamRoleStatements:
     - Effect: Allow
