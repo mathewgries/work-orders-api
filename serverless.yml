@@ -9,7 +9,7 @@ plugins:
 # Enable auto-packing of external modules
 custom:
   stage: ${opt:stage, self:provider.stage}
-  # workordersOrdersTable: ${self:custom.stage}-workordersOrders
+  workordersOrdersTable: ${self:custom.stage}-workordersOrders
   workordersClientsTable: ${self:custom.stage}-workorderClients
   workordersItemsTable: ${self:custom.stage}-workorderItems
   workordersContactsTable: ${self:custom.stage}-workorderContacts 
@@ -30,7 +30,7 @@ provider:
   # 'iamRoleStatement' defines the permission policy for the Lambda function.
   # In this case Lambda functions are granted with permissions to access DynamoDB.
   environment:
-    # workordersOrdersTable: ${self:custom.workordersOrdersTable}
+    workordersOrdersTable: ${self:custom.workordersOrdersTable}
     workordersClientsTable: ${self:custom.workordersClientsTable}
     workordersItemsTable: ${self:custom.workordersItemsTable}
     workordersContactsTable: ${self:custom.workordersContactsTable} 
@@ -48,7 +48,7 @@ provider:
       # Restrict our IAM role permissions to
       # the specific table for the stage
       Resource:
-        # - "Fn::GetAtt": [ WorkordersOrdersTable, Arn ]
+        - "Fn::GetAtt": [ WorkordersOrdersTable, Arn ]
         - "Fn::GetAtt": [ WorkordersClientsTable, Arn]
         - "Fn::GetAtt": [ WorkordersItemsTable, Arn]
         - "Fn::GetAtt": [ WorkordersContactsTable, Arn]
@@ -60,7 +60,7 @@ resources:
   # API Gateway Errors
   - ${file(resources/api/api-gateway-errors.yml)}
   # dynamodb tables
-  # - ${file(resources/tables/workorders-table.yml)}
+  - ${file(resources/tables/workorders-table.yml)}
   - ${file(resources/tables/clients-table.yml)}
   - ${file(resources/tables/workorders-items-table.yml)}
   - ${file(resources/tables/contacts-table.yml)}
