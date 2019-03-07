@@ -4,9 +4,9 @@ Resources:
     Properties:
       TableName: ${self:custom.tableName}
       AttributeDefinitions:
-        - AttributeName: itemtId
-          AttributeType: S
         - AttributeName: workorderId
+          AttributeType: S
+        - AttributeName: itemId
           AttributeType: S
         - AttributeName: userId
           AttributeType: S
