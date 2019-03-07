@@ -13,35 +13,33 @@ Resources:
         - AttributeName: clientId
           AttributeType: S
       KeySchema:
-        - AttributeName: itemId
-          KeyType: HASH
         - AttributeName: workorderId
+          KeyType: HASH
+        - AttributeName: itemId
           KeyType: RANGE
-      LocalSecondaryIndexes:
-        - IndexName: workordersItemsUserLSI
+      GlobalSecondaryIndexes:
+        - IndexName: workordersItemsUserGSI
           KeySchema:
-            - AttributeName: itemId
-              KeyType: HASH
             - AttributeName: userId
+              KeyType: HASH
+            - AttributeName: itemId
               KeyType: RANGE
           Projection: 
             ProjectionType: ALL
-        - IndexName: workordersItemsWorkorderLSI
+          ProvisionedThroughputs:
+            ReadCapacityUnits: ${self:custom.tableThroughput}
+            WriteCapacityUnits: ${self:custom.tableThroughput}
+        - IndexName: workordersItemsClientGSI
           KeySchema:
-            - AttributeName: itemId
-              KeyType: HASH
-            - AttributeName: workorderId
-              KeyType: RANGE
-          Projection: 
-            ProjectionType: ALL
-        - IndexName: workordersItemsClientLSI
-          KeySchema:
-            - AttributeName: itemId
-              KeyType: HASH
             - AttributeName: clientId
+              KeyType: HASH
+            - AttributeName: itemId
               KeyType: RANGE
           Projection: 
             ProjectionType: ALL
+          ProvisionedThroughputs:
+            ReadCapacityUnits: ${self:custom.tableThroughput}
+            WriteCapacityUnits: ${self:custom.tableThroughput}
       # Set the capacity based on the stage
       ProvisionedThroughput:
         ReadCapacityUnits: ${self:custom.tableThroughput}
