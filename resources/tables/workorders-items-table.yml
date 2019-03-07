@@ -2,7 +2,7 @@ Resources:
   WorkordersItemsTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: ${self:custom.tableName}
+      TableName: ${self:custom.workordersItemsTable}
       AttributeDefinitions:
         - AttributeName: workorderId
           AttributeType: S

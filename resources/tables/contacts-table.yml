@@ -2,7 +2,7 @@ Resources:
   WorkordersContactsTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: ${self:custom.tableName}
+      TableName: ${self:custom.workordersContactsTable}
       AttributeDefinitions:
         - AttributeName: contactId
           AttributeType: S

@@ -9,7 +9,10 @@ plugins:
 # Enable auto-packing of external modules
 custom:
   stage: ${opt:stage, self:provider.stage}
-  tableName: ${self:custom.stage}-workorders
+  workordersTable: ${self:custom.stage}-workorders
+  workordersClientsTable: ${self:custom.stage}-workorderClients
+  workorderItemsTable: ${self:custom.stage}-workorderItems
+  workordersContactsTable: ${self:custom.stage}-workorderContacts 
   tableThroughputs:
     prod: 5
     default: 1
@@ -27,7 +30,10 @@ provider:
   # 'iamRoleStatement' defines the permission policy for the Lambda function.
   # In this case Lambda functions are granted with permissions to access DynamoDB.
   environment:
-    tableName: ${self:custom.tableName}
+    workordersTable: ${self:custom.workordersTable}
+    workordersClientsTable: ${self:custom.workorderClientsTable}
+    workorderItemsTable: ${self:custom.workorderItemsTable}
+    workordersContactsTable: ${self:custom.workorderContactsTable} 
 
   iamRoleStatements:
     - Effect: Allow

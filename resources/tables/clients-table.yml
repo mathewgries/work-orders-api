@@ -2,7 +2,7 @@ Resources:
   WorkordersClientsTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: ${self:custom.tableName}
+      TableName: ${self:custom.workordersClientsTable}
       AttributeDefinitions:
         - AttributeName: clientId
           AttributeType: S
