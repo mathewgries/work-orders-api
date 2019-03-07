@@ -5,7 +5,7 @@
 #     domain api call
 # - authorizer: authenticate using the AWS IAM role
 createWorkorder:
-  handler: createWorkorder.main
+  handler: functions/workorders/createWorkorder.main
   events:
     - http:
         path: workorders
@@ -17,7 +17,7 @@ getWorkorder:
   # Defines an HTTP API endpoint that calls the main function in get.js
   # - path: url path is /notes/{id}
   # - method: GET request
-  handler: getWorkorder.main
+  handler: functions/workorders/getWorkorder.main
   events:
     - http:
         path: workorders/{id}
@@ -29,7 +29,7 @@ listWorkorders:
   # Defines an HTTP API endpoint that calls the main function in list.js
   # - path: url path is /notes
   # - method: GET request
-  handler: listWorkorders.main
+  handler: functions/workorders/listWorkorders.main
   events:
     - http:
         path: workorders
@@ -41,7 +41,7 @@ updateWorkorder:
   # Defines an HTTP API endpoint that calls the main function in update.js
   # - path: url path is /notes/{id}
   # - method: PUT request
-  handler: updateWorkorder.main
+  handler: functions/workorders/updateWorkorder.main
   events:
     - http:
         path: workorders/{id}
@@ -53,7 +53,7 @@ deleteWorkorder:
   # Defines an HTTP API endpoint that calls the main function in delete.js
   # - path: url path is /notes/{id}
   # - method: DELETE request
-  handler: deleteWorkorder.main
+  handler: functions/workorders/deleteWorkorder.main
   events:
     - http:
         path: workorders/{id}
