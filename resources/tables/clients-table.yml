@@ -9,9 +9,9 @@ Resources:
         - AttributeName: userId
           AttributeType: S
       KeySchema:
-        - AttributeName: clientId
-          KeyType: HASH
         - AttributeName: userId
+          KeyType: HASH
+        - AttributeName: clientId
           KeyType: RANGE
       # Set the capacity based on the stage
       ProvisionedThroughput:
