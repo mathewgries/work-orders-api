@@ -1,0 +1,62 @@
+# Defines an HTTP API endpoint that calls the main function in create.js
+# - path: url path is /notes
+# - method: POST request
+# - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
+#     domain api call
+# - authorizer: authenticate using the AWS IAM role
+createWorkorder:
+  handler: createWorkorder.main
+  events:
+    - http:
+        path: workorders
+        method: post
+        cors: true
+        authorizer: aws_iam
+
+getWorkorder:
+  # Defines an HTTP API endpoint that calls the main function in get.js
+  # - path: url path is /notes/{id}
+  # - method: GET request
+  handler: getWorkorder.main
+  events:
+    - http:
+        path: workorders/{id}
+        method: get
+        cors: true
+        authorizer: aws_iam
+
+listWorkorders:
+  # Defines an HTTP API endpoint that calls the main function in list.js
+  # - path: url path is /notes
+  # - method: GET request
+  handler: listWorkorders.main
+  events:
+    - http:
+        path: workorders
+        method: get
+        cors: true
+        authorizer: aws_iam
+
+updateWorkorder:
+  # Defines an HTTP API endpoint that calls the main function in update.js
+  # - path: url path is /notes/{id}
+  # - method: PUT request
+  handler: updateWorkorder.main
+  events:
+    - http:
+        path: workorders/{id}
+        method: put
+        cors: true
+        authorizer: aws_iam
+
+deleteWorkorder:
+  # Defines an HTTP API endpoint that calls the main function in delete.js
+  # - path: url path is /notes/{id}
+  # - method: DELETE request
+  handler: deleteWorkorder.main
+  events:
+    - http:
+        path: workorders/{id}
+        method: delete
+        cors: true
+        authorizer: aws_iam

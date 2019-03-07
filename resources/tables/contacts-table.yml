@@ -1,0 +1,30 @@
+Resources:
+  WorkordersContactsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:custom.tableName}
+      AttributeDefinitions:
+        - AttributeName: contactId
+          AttributeType: S
+        - AttributeName: userId
+          AttributeType: S
+        - AttributeName: clientId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: contactId
+          KeyType: HASH
+        - AttributeName: userId
+          KeyType: RANGE
+      LocalSecondaryIndexes:
+        - IndexName: contactsLSI
+          KeyScheme:
+          - AttributeName: contactId
+            KeyType: HASH
+          - AttributeName: clientId
+            KeyType: RANGE
+          Projection: 
+            ProjectionType: ALL
+      # Set the capacity based on the stage
+      ProvisionedThroughput:
+        ReadCapacityUnits: ${self:custom.tableThroughput}
+        WriteCapacityUnits: ${self:custom.tableThroughput}

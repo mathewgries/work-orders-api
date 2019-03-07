@@ -1,0 +1,40 @@
+Resources:
+  WorkordersItemsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:custom.tableName}
+      AttributeDefinitions:
+        - AttributeName: itemtId
+          AttributeType: S
+        - AttributeName: workorderId
+          AttributeType: S
+        - AttributeName: userId
+          AttributeType: S
+        - AttributeName: clientId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: itemId
+          KeyType: HASH
+        - AttributeName: workorderId
+          KeyType: RANGE
+      LocalSecondaryIndexes:
+        - IndexName: workordersItemsLSI
+          KeySchema:
+            - AttributeName: itemId
+              KeyType: HASH
+            - AttributeName: userId
+              KeyType: RANGE
+          Projection: 
+            ProjectionType: ALL
+        - IndexName: workordersItemsLSI
+          KeySchema:
+            - AttributeName: itemId
+              KeyType: HASH
+            - AttributeName: workorderId
+              KeyType: RANGE
+            Projection: 
+              ProjectionType: ALL
+      # Set the capacity based on the stage
+      ProvisionedThroughput:
+        ReadCapacityUnits: ${self:custom.tableThroughput}
+        WriteCapacityUnits: ${self:custom.tableThroughput}
