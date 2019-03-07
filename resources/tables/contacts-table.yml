@@ -17,7 +17,7 @@ Resources:
           KeyType: RANGE
       LocalSecondaryIndexes:
         - IndexName: contactsLSI
-          KeyScheme:
+          KeySchema:
           - AttributeName: contactId
             KeyType: HASH
           - AttributeName: clientId
