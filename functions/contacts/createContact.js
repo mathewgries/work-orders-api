@@ -15,7 +15,7 @@ export async function main(event, context){
             name: content.name,
             email: content.email || null,
             phonenumbers: [],
-            preferredContact: content.contactMethod
+            preferredContactMethod: content.preferredContactMethod
         }
     }
 
