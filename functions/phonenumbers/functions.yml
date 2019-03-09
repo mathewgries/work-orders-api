@@ -1,0 +1,63 @@
+# Defines an HTTP API endpoint that calls the main function in create.js
+# - path: url path is /phonenumbers
+# - method: POST request
+# - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
+#     domain api call
+# - authorizer: authenticate using the AWS IAM role
+
+createPhonenumbers:
+  handler: functions/phonenumbers/createPhonenumber.main
+  events:
+    - http:
+        path: phonenumbers
+        method: post
+        cors: true
+        authorizer: aws_iam
+
+getPhonenumbers:
+  # Defines an HTTP API endpoint that calls the main function in get.js
+  # - path: url path is /phonenumbers/{id}
+  # - method: GET request
+  handler: functions/phonenumbers/getPhonenumber.main
+  events:
+    - http:
+        path: phonenumbers/{id}
+        method: get
+        cors: true
+        authorizer: aws_iam
+
+listPhonenumberses:
+  # Defines an HTTP API endpoint that calls the main function in list.js
+  # - path: url path is /phonenumbers
+  # - method: GET request
+  handler: functions/phonenumbers/listPhonenumbers.main
+  events:
+    - http:
+        path: phonenumbers
+        method: get
+        cors: true
+        authorizer: aws_iam
+
+updatePhonenumbers:
+  # Defines an HTTP API endpoint that calls the main function in update.js
+  # - path: url path is /phonenumbers/{id}
+  # - method: PUT request
+  handler: functions/phonenumbers/updatePhonenumber.main
+  events:
+    - http:
+        path: phonenumbers/{id}
+        method: put
+        cors: true
+        authorizer: aws_iam
+
+deletePhonenumbers:
+  # Defines an HTTP API endpoint that calls the main function in delete.js
+  # - path: url path is /phonenumbers/{id}
+  # - method: DELETE request
+  handler: functions/phonenumbers/deletePhonenumber.main
+  events:
+    - http:
+        path: phonenumbers/{id}
+        method: delete
+        cors: true
+        authorizer: aws_iam

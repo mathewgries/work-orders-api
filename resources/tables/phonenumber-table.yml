@@ -1,0 +1,19 @@
+Resources:
+  WorkordersPhonenumbersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:custom.workordersPhonenumbersTable}
+      AttributeDefinitions:
+        - AttributeName: phonenumberId
+          AttributeType: S
+        - AttributeName: clientId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: clientId
+          KeyType: HASH
+        - AttributeName: phonenumberId
+          KeyType: RANGE
+      # Set the capacity based on the stage
+      ProvisionedThroughput:
+        ReadCapacityUnits: ${self:custom.tableThroughput}
+        WriteCapacityUnits: ${self:custom.tableThroughput}

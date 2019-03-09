@@ -6,19 +6,14 @@ export async function main(event, context) {
     const { content } = data
 
     const params = {
-        TableName: process.env.workordersAddressTable,
+        TableName: process.env.workordersPhonenumbersTable,
         Item: {
-            addressId: content.addressId,
+            phonenumberId: content.phonenumberId,
             userId: event.requestContext.identity.cognitoIdentityId,
             clientId: content.clientId,
-            addressType: content.addressType, // Mailing or Billing
-            country: content.country,
-            line1: content.line1,
-            line2: content.line2,
-            city: content.city,
-            state: content.state,
-            zipCode: content.zipCode,
-            zipCode4: content.zipCodeAppend || null
+            phoneType: content.phoneType,
+            phonenumber: content.phonenumber,
+            countryCode: content.countryCode
         }
     }
 
