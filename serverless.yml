@@ -14,6 +14,7 @@ custom:
   workordersItemsTable: ${self:custom.stage}-workordersItems
   workordersContactsTable: ${self:custom.stage}-workordersContacts 
   workordersAddressTable: ${self:custom.stage}-workordersAddress
+  workordersPhonenumbersTable: ${self:custom.stage}-workordersPhonenumbers
   tableThroughputs:
     prod: 5
     default: 1
@@ -36,6 +37,7 @@ provider:
     workordersItemsTable: ${self:custom.workordersItemsTable}
     workordersContactsTable: ${self:custom.workordersContactsTable} 
     workordersAddressTable: ${self:custom.workordersAddressTable}
+    workordersPhonenumbersTable: ${self.custom.workordersPhonenumbersTable}
 
   iamRoleStatements:
     - Effect: Allow
@@ -55,6 +57,7 @@ provider:
         - "Fn::GetAtt": [ WorkordersItemsTable, Arn]
         - "Fn::GetAtt": [ WorkordersContactsTable, Arn]
         - "Fn::GetAtt": [ WorkordersAddressTable, Arn]
+        - "Fn::GetAtt": [WorkordersPhonenumbersTable, Arn]
 
 functions:
   - ${file(functions/workorders/functions.yml)}
@@ -62,6 +65,7 @@ functions:
   - ${file(functions/contacts/functions.yml)}
   - ${file(functions/workorderItems/functions.yml)}
   - ${file(functions/address/functions.yml)}
+  - ${file(functions/phonenumbers/functions.yml)}
   
 resources:
   # API Gateway Errors
@@ -72,6 +76,7 @@ resources:
   - ${file(resources/tables/workorders-items-table.yml)}
   - ${file(resources/tables/contacts-table.yml)}
   - ${file(resources/tables/address-table.yml)}
+  - ${file(resources/tables/phonenumbers-table.yml)}
   # S3
   - ${file(resources/buckets/s3-bucket.yml)}
   # Cognito
