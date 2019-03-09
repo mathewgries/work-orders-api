@@ -57,7 +57,7 @@ provider:
         - "Fn::GetAtt": [ WorkordersItemsTable, Arn]
         - "Fn::GetAtt": [ WorkordersContactsTable, Arn]
         - "Fn::GetAtt": [ WorkordersAddressTable, Arn]
-        - "Fn::GetAtt": [WorkordersPhonenumbersTable, Arn]
+        - "Fn::GetAtt": [ WorkordersPhonenumbersTable, Arn]
 
 functions:
   - ${file(functions/workorders/functions.yml)}
