@@ -1,4 +1,3 @@
-import uuid from "uuid";
 import * as dynamoDbLib from "../../libs/dynamodb-lib";
 import { success, failure } from "../../libs/response-lib";
 
@@ -10,7 +9,7 @@ export async function main(event, context){
         TableName: process.env.workordersContactsTable,
         Item: {
             userId: event.requestContext.identity.cognitoIdentityId,
-            contactId: uuid.v1(),
+            contactId: content.contactId,
             clientId: content.clientId,
             name: content.name,
             email: content.email || null,

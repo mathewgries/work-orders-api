@@ -19,7 +19,7 @@ export async function main(event, context) {
             city: content.city,
             state: content.state,
             zipCode: content.zipCode,
-            zipCodeAppend: content.zipCodeAppend || null
+            zipCode4: content.zipCodeAppend || null
         }
     }
 
