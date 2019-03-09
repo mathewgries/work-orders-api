@@ -13,8 +13,8 @@ export async function main(event, context) {
             name: content.name,
             type: content.type, // Residential or Commercial
             addresses: content.addresses,
-            contacts: content.phonenumbers,
-            phonenumbers: [],
+            contacts: content.contactId,
+            phonenumbers: content.phonenumbers,
             email: content.email || null,
             createdAt: Date.now()
         }
