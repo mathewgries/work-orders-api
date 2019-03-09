@@ -12,8 +12,8 @@ export async function main(event, context) {
             userId: event.requestContext.identity.cognitoIdentityId,
             name: content.name,
             type: content.type, // Residential or Commercial
-            addresses: [],
-            contacts: [],
+            addresses: content.addresses,
+            contacts: content.phonenumbers,
             phonenumbers: [],
             email: content.email || null,
             createdAt: Date.now()
