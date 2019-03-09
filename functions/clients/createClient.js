@@ -12,9 +12,9 @@ export async function main(event, context) {
             userId: event.requestContext.identity.cognitoIdentityId,
             name: content.name,
             type: content.type, // Residential or Commercial
-            addresses: content.addresses,
-            contacts: content.contactId,
-            phonenumbers: content.phonenumbers,
+            addresses: [content.addresses],
+            contacts: [content.contact],
+            phonenumbers: [content.phonenumbers],
             email: content.email || null,
             createdAt: Date.now()
         }
