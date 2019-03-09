@@ -37,7 +37,7 @@ provider:
     workordersItemsTable: ${self:custom.workordersItemsTable}
     workordersContactsTable: ${self:custom.workordersContactsTable} 
     workordersAddressTable: ${self:custom.workordersAddressTable}
-    workordersPhonenumbersTable: ${self.custom.workordersPhonenumbersTable}
+    workordersPhonenumbersTable: ${self:custom.workordersPhonenumbersTable}
 
   iamRoleStatements:
     - Effect: Allow
