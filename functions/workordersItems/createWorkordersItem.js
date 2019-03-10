@@ -12,7 +12,7 @@ export async function main(event, context){
             userId: event.requestContext.identity.cognitoIdentityId,
             workorderId: content.workorderId,
             clientId: content.clientId,
-            workordersItemType: content.workordersItemsType,
+            workordersItemType: content.workordersItemType,
             description: content.description,
             quanity: content.quanity,
             unitPrice: content.unitPrice,
