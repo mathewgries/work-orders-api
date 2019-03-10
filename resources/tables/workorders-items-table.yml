@@ -15,7 +15,7 @@ Resources:
       KeySchema:
         - AttributeName: userId
           KeyType: HASH
-        - AttributeName: workorderId
+        - AttributeName: workordersItemId
           KeyType: RANGE
       GlobalSecondaryIndexes:
         - IndexName: workordersItemsUserGSI
