@@ -4,7 +4,7 @@
 # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
 #     domain api call
 # - authorizer: authenticate using the AWS IAM role
-createWorkordersItems:
+createWorkordersItem:
   handler: functions/workordersItems/createWorkordersItem.main
   events:
     - http:
@@ -13,7 +13,7 @@ createWorkordersItems:
         cors: true
         authorizer: aws_iam
 
-getWorkordersItems:
+getWorkordersItem:
   # Defines an HTTP API endpoint that calls the main function in get.js
   # - path: url path is /workorderItems/{id}
   # - method: GET request
