@@ -2,15 +2,12 @@ import * as dynamoDbLib from "../../libs/dynamodb-lib";
 import { success, failure } from "../../libs/response-lib";
 
 export async function main(event, context) {
-    const body = JSON.parse(event.body)
-    const { content } = body
 
     const params = {
         TableName: process.env.workordersItemsTable,
-        KeyConditionExpression: "workorderId = :workorderId, userId = :userId",
+        KeyConditionExpression: "userId = :userId",
         ExpressionAttributeValues: {
-            ":userId": event.requestContext.identity.cognitoIdentityId,
-            ":workorderId": content.workorderId
+            ":userId": event.requestContext.identity.cognitoIdentityId
         }
     }
 
