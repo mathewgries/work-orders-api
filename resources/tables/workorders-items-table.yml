@@ -6,7 +6,7 @@ Resources:
       AttributeDefinitions:
         - AttributeName: workorderId
           AttributeType: S
-        - AttributeName: workordersIemId
+        - AttributeName: workordersItemId
           AttributeType: S
         - AttributeName: userId
           AttributeType: S
