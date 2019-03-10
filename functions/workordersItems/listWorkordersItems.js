@@ -3,11 +3,13 @@ import { success, failure } from "../../libs/response-lib";
 
 export async function main(event, context) {
     const body = JSON.parse(event.body)
+    const { content } = body
+
     const params = {
         TableName: process.env.workordersItemsTable,
         KeyConditionExpression: "workorderId = :workorderId",
         ExpressionAttributeValues: {
-            ":workorderId": body.workorderId
+            ":workorderId": content.workorderId
         }
     }
 
