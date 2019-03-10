@@ -3,6 +3,7 @@ import { success, failure } from '../../libs/response-lib'
 
 export async function main(event, context) {
     const data = JSON.parse(event.body)
+    const { content } = data
 
     const params = {
         TableName: process.env.workordersClientsTable,
@@ -10,10 +11,20 @@ export async function main(event, context) {
             clientId: event.pathParameters.id,
             userId: event.requestContext.identity.cognitoIdentityId,
         },
-        UpdateExpression: "SET type = :type, email = :email",
+        UpdateExpression: `SET 
+            name = :name, 
+            type = :type,
+            email = :email,
+            contacts = :contacts, 
+            addresses = :addresses,
+            phonenumbers = :phonenumbers`,
         ExpressionAttributeValues: {
-            ":type": data.type || null,
-            ":email": data.email || null
+            ":name": content.name,
+            ":type": content.type || null,
+            ":email": content.email || null,
+            ":contacts": [content.contacts],
+            ":addresses": [content.addresses],
+            ":phonenumbers": [content.phonenumbers]
         },
         ReturnValue: "ALL_NEW"
     }
