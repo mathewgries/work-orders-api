@@ -13,9 +13,9 @@ Resources:
         - AttributeName: clientId
           AttributeType: S
       KeySchema:
-        - AttributeName: workorderId
-          KeyType: HASH
         - AttributeName: userId
+          KeyType: HASH
+        - AttributeName: workorderId
           KeyType: RANGE
       GlobalSecondaryIndexes:
         - IndexName: workordersItemsUserGSI
