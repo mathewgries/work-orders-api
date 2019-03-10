@@ -7,8 +7,9 @@ export async function main(event, context) {
 
     const params = {
         TableName: process.env.workordersItemsTable,
-        KeyConditionExpression: "workorderId = :workorderId",
+        KeyConditionExpression: "workorderId = :workorderId, userId = :userId",
         ExpressionAttributeValues: {
+            ":userId": event.requestContext.identity.cognitoIdentityId,
             ":workorderId": content.workorderId
         }
     }
