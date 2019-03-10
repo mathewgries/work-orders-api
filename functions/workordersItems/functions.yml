@@ -4,59 +4,59 @@
 # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
 #     domain api call
 # - authorizer: authenticate using the AWS IAM role
-createWorkorderItems:
-  handler: functions/workorderItems/createWorkorderItem.main
+createWorkordersItems:
+  handler: functions/workordersItems/createWorkordersItem.main
   events:
     - http:
-        path: workorderItems
+        path: workordersItems
         method: post
         cors: true
         authorizer: aws_iam
 
-getWorkorderItems:
+getWorkordersItems:
   # Defines an HTTP API endpoint that calls the main function in get.js
   # - path: url path is /workorderItems/{id}
   # - method: GET request
-  handler: functions/workorderItems/getWorkorderItem.main
+  handler: functions/workordersItems/getWorkordersItem.main
   events:
     - http:
-        path: workorderItems/{id}
+        path: workordersItems/{id}
         method: get
         cors: true
         authorizer: aws_iam
 
-listWorkorderItems:
+listWorkordersItems:
   # Defines an HTTP API endpoint that calls the main function in list.js
   # - path: url path is /workorderItems
   # - method: GET request
-  handler: functions/workorderItems/listWorkorderItems.main
+  handler: functions/workordersItems/listWorkordersItems.main
   events:
     - http:
-        path: workorderItems
+        path: workordersItems
         method: get
         cors: true
         authorizer: aws_iam
 
-updateWorkorderItem:
+updateWorkordersItem:
   # Defines an HTTP API endpoint that calls the main function in update.js
   # - path: url path is /workorderItems/{id}
   # - method: PUT request
-  handler: functions/workorderItems/updateWorkorderItem.main
+  handler: functions/workordersItems/updateWorkordersItem.main
   events:
     - http:
-        path: workorderItems/{id}
+        path: workordersItems/{id}
         method: put
         cors: true
         authorizer: aws_iam
 
-deleteWorkorderItem:
+deleteWorkordersItem:
   # Defines an HTTP API endpoint that calls the main function in delete.js
   # - path: url path is /workorderItems/{id}
   # - method: DELETE request
-  handler: functions/workorderItems/deleteWorkorderItem.main
+  handler: functions/workordersItems/deleteWorkordersItem.main
   events:
     - http:
-        path: workorderItems/{id}
+        path: workordersItems/{id}
         method: delete
         cors: true
         authorizer: aws_iam

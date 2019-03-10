@@ -6,7 +6,7 @@ Resources:
       AttributeDefinitions:
         - AttributeName: workorderId
           AttributeType: S
-        - AttributeName: itemId
+        - AttributeName: workordersIemId
           AttributeType: S
         - AttributeName: userId
           AttributeType: S
@@ -15,14 +15,14 @@ Resources:
       KeySchema:
         - AttributeName: workorderId
           KeyType: HASH
-        - AttributeName: itemId
+        - AttributeName: workordersItemId
           KeyType: RANGE
       GlobalSecondaryIndexes:
         - IndexName: workordersItemsUserGSI
           KeySchema:
             - AttributeName: userId
               KeyType: HASH
-            - AttributeName: itemId
+            - AttributeName: workordersItemId
               KeyType: RANGE
           Projection: 
             ProjectionType: ALL
@@ -33,7 +33,7 @@ Resources:
           KeySchema:
             - AttributeName: clientId
               KeyType: HASH
-            - AttributeName: itemId
+            - AttributeName: workordersItemId
               KeyType: RANGE
           Projection: 
             ProjectionType: ALL
