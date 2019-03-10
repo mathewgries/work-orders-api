@@ -4,42 +4,15 @@ Resources:
     Properties:
       TableName: ${self:custom.workordersItemsTable}
       AttributeDefinitions:
-        - AttributeName: workorderId
-          AttributeType: S
-        - AttributeName: workordersItemId
-          AttributeType: S
         - AttributeName: userId
           AttributeType: S
-        - AttributeName: clientId
+        - AttributeName: workordersItemId
           AttributeType: S
       KeySchema:
         - AttributeName: userId
           KeyType: HASH
         - AttributeName: workordersItemId
           KeyType: RANGE
-      GlobalSecondaryIndexes:
-        - IndexName: workordersItemsUserGSI
-          KeySchema:
-            - AttributeName: userId
-              KeyType: HASH
-            - AttributeName: workordersItemId
-              KeyType: RANGE
-          Projection: 
-            ProjectionType: ALL
-          ProvisionedThroughput:
-            ReadCapacityUnits: ${self:custom.tableThroughput}
-            WriteCapacityUnits: ${self:custom.tableThroughput}
-        - IndexName: workordersItemsClientGSI
-          KeySchema:
-            - AttributeName: clientId
-              KeyType: HASH
-            - AttributeName: workordersItemId
-              KeyType: RANGE
-          Projection: 
-            ProjectionType: ALL
-          ProvisionedThroughput:
-            ReadCapacityUnits: ${self:custom.tableThroughput}
-            WriteCapacityUnits: ${self:custom.tableThroughput}
       # Set the capacity based on the stage
       ProvisionedThroughput:
         ReadCapacityUnits: ${self:custom.tableThroughput}
