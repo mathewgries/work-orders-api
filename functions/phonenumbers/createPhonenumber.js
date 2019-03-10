@@ -13,7 +13,8 @@ export async function main(event, context) {
             clientId: content.clientId,
             phoneType: content.phoneType,
             phonenumber: content.phonenumber,
-            countryCode: content.countryCode
+            countryCode: content.countryCode,
+            createdAt: Date.now()
         }
     }
 

@@ -12,15 +12,16 @@ export async function main(event, context){
     const params = {
         TableName: process.env.workordersItemsTable,
         Item: {
-            itemId: uuid.v1(),
+            workordersItemId: uuid.v1(),
             userId: event.requestContext.identity.cognitoIdentityId,
             workorderId: content.workorderId,
             clientId: content.clientId,
-            itemType: content.itemType,
+            workordersItemType: content.workordersItemsType,
             description: content.description,
             quanity: content.quanity,
             unitPrice: content.unitPrice,
-            total: price
+            total: price,
+            createdAt: Date.now()
         }
     }
 
