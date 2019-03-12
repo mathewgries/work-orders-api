@@ -10,20 +10,21 @@ export async function main(event, context) {
         TableName: process.env.workordersContactsTable,
         Key: {
             userId: event.requestContext.identity.cognitoIdentityId,
-            contactId: event.pathParameters.id
+            contactId: content.contactId
         },
-        UpdateExpression: "SET name = :name, email = :email, preferredContact = :preferredContact",
+        UpdateExpression: "SET name = :name, email = :email, preferredContact = :preferredContact, clientId = :clientId",
         ExpressionAttributeValues: {
             ":name": content.name,
             ":email": content.email || null,
-            ":preferredContact": content.contactMethod
+            ":preferredContactMethod": content.preferredContactMethod,
+            ":clientId": clientId
         },
         ReturnValues: "ALL_NEW"
     }
 
     try {
         const result = await dynamoDbLib.call("update", params)
-        return success({ status: true })
+        return success({ status: true, result: result })
     } catch (e) {
         return failure({ status: false })
     }
