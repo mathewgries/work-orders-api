@@ -22,7 +22,7 @@ export async function main(event, context){
 
     try {
         const result = await dynamoDbLib.call("put", params)
-        return success(result.Item)
+        return success(params.Item)
     } catch (e) {
         return failure({ status: false})
     }
