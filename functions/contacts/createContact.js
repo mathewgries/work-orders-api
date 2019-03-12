@@ -14,8 +14,8 @@ export async function main(event, context){
             clientId: content.clientId,
             name: content.name,
             email: content.email || null,
-            phonenumbers: [content.phonenumbers] || null,
-            preferredContactMethod: content.preferredContactMethod || null,
+            phonenumbers: [content.phonenumbers],
+            preferredContactMethod: content.preferredContactMethod,
             createAt: Date.now()
         }
     }
