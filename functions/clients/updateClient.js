@@ -12,17 +12,15 @@ export async function main(event, context) {
             userId: event.requestContext.identity.cognitoIdentityId,
         },
         UpdateExpression: `SET 
-            name = :name, 
+            name = :name,
             type = :type,
             email = :email,
-            contacts = :contacts, 
             addresses = :addresses,
             phonenumbers = :phonenumbers`,
         ExpressionAttributeValues: {
             ":name": content.name,
             ":type": content.type || null,
             ":email": content.email || null,
-            ":contacts": [content.contacts],
             ":addresses": [content.addresses],
             ":phonenumbers": [content.phonenumbers]
         },

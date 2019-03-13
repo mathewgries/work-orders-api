@@ -7,7 +7,7 @@ export async function main(event, context) {
         TableName: process.env.workordersContactsTable,
         Key: {
             userId: event.requestContext.identity.cognitoIdentityId,
-            contactId: event.pathParmeters.id
+            contactId: event.pathParameters.id
         }
     }
 
