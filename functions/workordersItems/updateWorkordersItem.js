@@ -1,31 +1,31 @@
 import * as dynamoDbLib from "../../libs/dynamodb-lib";
 import { success, failure } from "../../libs/response-lib";
-import { currencyRounder } from '../helpers/currencyRounder'
 
 export async function main(event, context) {
 
     const data = JSON.parse(event.body)
     const { content } = data
-    const price = currencyRounder(content.quanity, content.unitPrice)
 
     const params = {
         TableName: process.env.workordersItemsTable,
         Key: {
             userId: event.requestContext.identity.cognitoIdentityId,
-            itemId: content.itemId,
-            workorderId: content.workorderId
+            workordersItemId: content.workordersItemId
         },
         UpdateExpression: `
-            SET itemType = :itemType, 
+            SET workordersItemType = :workordersItemType, 
                 description = :description, 
                 quanity = :quanity, 
                 unitPrice = :unitPrice, 
-                totalAmount = :totalAmount`,
+                totalAmount = :totalAmount,
+                modifiedAt = :modifiedAt`,
         ExpressionAttributeValues: {
+            ":workordersItemType": content.workordersItemType,
             ":description": content.description,
             ":quanity": content.quanity,
             ":unitPrice": content.unitPrice,
-            ":totalAmount": price
+            ":totalAmount": price,
+            ":modifiedAt": Date.now()
         },
         ReturnValues: "ALL_NEW"
     }

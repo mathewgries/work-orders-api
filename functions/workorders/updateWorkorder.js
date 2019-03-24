@@ -14,19 +14,24 @@ export async function main(event, context) {
     },
     // 'UpdateExpression' defines the attributes to be updated
     // 'ExpressionAttributeValues' defines the value in the update expression
-    UpdateExpression: "SET title = :title, client = :client, contact = :contact, description = :description, attachment = :attachment",
+    UpdateExpression: `SET 
+		title = :title, 
+		clientId = :clientId, 
+		contactId = :contactId, 
+		description = :description, 
+		modifiedAt = :modifiedAt`,
     ExpressionAttributeValues: {
-      ":attachment": data.attachment || null,
-      ":title": data.title || null,
-      ":client": data.client || null,
-      ":contact": data.contact || null,
-      ":description": data.description || null
+		":title": data.title || null,
+		":clientId": data.clientId || null,
+		":contactId": data.contactId || null,
+		":description": data.description || null,
+		":modifiedAt": Date.now()
     },
     ReturnValues: "ALL_NEW"
   };
 
   try {
-    const result = await dynamoDbLib.call("update", params);
+    await dynamoDbLib.call("update", params);
     return success({ status: true });
   } catch (e) {
     return failure({ status: false });
