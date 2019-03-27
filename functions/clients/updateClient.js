@@ -1,5 +1,5 @@
-import * as dynamodbLib from '../../libs/dynamodb-lib'
-import { success, failure } from '../../libs/response-lib'
+import * as dynamoDbLib from "../../libs/dynamodb-lib";
+import { success, failure } from "../../libs/response-lib";
 
 export async function main(event, context) {
     const data = JSON.parse(event.body)
@@ -8,7 +8,7 @@ export async function main(event, context) {
         TableName: process.env.workordersClientsTable,
         Key: {
             userId: event.requestContext.identity.cognitoIdentityId,
-			clientId: event.pathParameters.id
+            clientId: event.pathParameters.id
         },
         UpdateExpression: `SET 
             name = :name,
@@ -19,13 +19,13 @@ export async function main(event, context) {
             ":type": data.type,
             ":email": data.email
         },
-        ReturnValue: "ALL_NEW"
+        ReturnValues: "ALL_NEW"
     }
 
     try {
-        await dynamodbLib.call('update', params)
-        return success({ status: true })
+        await dynamoDbLib.call("update", params);
+        return success({ status: true });
     } catch (e) {
-        return failure({ success: false })
+        return failure({ status: false });
     }
 }
