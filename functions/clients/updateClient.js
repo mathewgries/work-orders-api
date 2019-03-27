@@ -14,15 +14,11 @@ export async function main(event, context) {
         UpdateExpression: `SET 
             name = :name,
             type = :type,
-            email = :email,
-            addresses = :addresses,
-            phonenumbers = :phonenumbers`,
+            email = :email`,
         ExpressionAttributeValues: {
             ":name": content.name,
-            ":type": content.type || null,
-            ":email": content.email || null,
-            ":addresses": [content.addresses],
-            ":phonenumbers": [content.phonenumbers]
+            ":type": content.type,
+            ":email": content.email
         },
         ReturnValue: "ALL_NEW"
     }
