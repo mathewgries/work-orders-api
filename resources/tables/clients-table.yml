@@ -4,9 +4,9 @@ Resources:
     Properties:
       TableName: ${self:custom.workordersClientsTable}
       AttributeDefinitions:
-        - AttributeName: clientId
-          AttributeType: S
         - AttributeName: userId
+          AttributeType: S
+        - AttributeName: clientId
           AttributeType: S
       KeySchema:
         - AttributeName: userId
