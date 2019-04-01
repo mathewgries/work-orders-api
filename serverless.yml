@@ -10,7 +10,7 @@ plugins:
 custom:
   stage: ${opt:stage, self:provider.stage}
   workordersTable: ${self:custom.stage}-workorders
-  # workordersClientsTable: ${self:custom.stage}-workordersClients
+  workordersClientsTable: ${self:custom.stage}-workordersClients
   workordersItemsTable: ${self:custom.stage}-workordersItems
   workordersContactsTable: ${self:custom.stage}-workordersContacts 
   workordersAddressTable: ${self:custom.stage}-workordersAddress
@@ -33,7 +33,7 @@ provider:
   # In this case Lambda functions are granted with permissions to access DynamoDB.
   environment:
     workordersTable: ${self:custom.workordersTable}
-    # workordersClientsTable: ${self:custom.workordersClientsTable}
+    workordersClientsTable: ${self:custom.workordersClientsTable}
     workordersItemsTable: ${self:custom.workordersItemsTable}
     workordersContactsTable: ${self:custom.workordersContactsTable} 
     workordersAddressTable: ${self:custom.workordersAddressTable}
@@ -53,7 +53,7 @@ provider:
       # the specific table for the stage
       Resource:
         - "Fn::GetAtt": [ WorkordersTable, Arn ]
-        # - "Fn::GetAtt": [ WorkordersClientsTable, Arn]
+        - "Fn::GetAtt": [ WorkordersClientsTable, Arn]
         - "Fn::GetAtt": [ WorkordersItemsTable, Arn]
         - "Fn::GetAtt": [ WorkordersContactsTable, Arn]
         - "Fn::GetAtt": [ WorkordersAddressTable, Arn]
@@ -61,7 +61,7 @@ provider:
 
 functions:
   - ${file(functions/workorders/functions.yml)}
-  # - ${file(functions/clients/functions.yml)}
+  - ${file(functions/clients/functions.yml)}
   - ${file(functions/contacts/functions.yml)}
   - ${file(functions/workordersItems/functions.yml)}
   - ${file(functions/address/functions.yml)}
@@ -72,7 +72,7 @@ resources:
   - ${file(resources/api/api-gateway-errors.yml)}
   # dynamodb tables
   - ${file(resources/tables/workorders-table.yml)}
-  # - ${file(resources/tables/clients-table.yml)}
+  - ${file(resources/tables/clients-table.yml)}
   - ${file(resources/tables/workorders-items-table.yml)}
   - ${file(resources/tables/contacts-table.yml)}
   - ${file(resources/tables/address-table.yml)}
