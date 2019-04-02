@@ -1,9 +1,7 @@
 import * as dynamoDbLib from "../../libs/dynamodb-lib";
 import { success, failure } from "../../libs/response-lib";
-import util from 'util'
 
 export async function main(event, context) {
-	console.log('event: ', util.inspect(event, { showHidden: false, depth: null }));
 	const data = JSON.parse(event.body);
 	const params = {
 		TableName: process.env.workordersClientsTable,
@@ -34,6 +32,6 @@ export async function main(event, context) {
 		await dynamoDbLib.call("update", params);
 		return success({ status: true });
 	} catch (e) {
-		return failure({ status: false , body: JSON.stringify(e.message)});
+		return failure({ status: false });
 	}
 }
