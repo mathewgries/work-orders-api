@@ -15,8 +15,8 @@ export async function main(event, context) {
 		// 'UpdateExpression' defines the attributes to be updated
 		// 'ExpressionAttributeValues' defines the value in the update expression
 		UpdateExpression: `SET 
-			name = :n, 
-			type = :t, 
+			#n = :n, 
+			#t = :t, 
 			email = :email, 
 			modifiedAt = :modifiedAt`,
 		ExpressionAttributeValues: {
@@ -24,6 +24,10 @@ export async function main(event, context) {
 			":t": data.type || null,
 			":email": data.email || null,
 			":modifiedAt": Date.now()
+		},
+		ExpressionAttributeNames: {
+			"#n": "name",
+			"#t": "type"
 		},
 		ReturnValues: "ALL_NEW"
 	};
@@ -35,4 +39,3 @@ export async function main(event, context) {
 		return failure({ status: false, error: e});
 	}
 }
-
