@@ -32,6 +32,6 @@ export async function main(event, context) {
 		await dynamoDbLib.call("update", params);
 		return success({ status: true });
 	} catch (e) {
-		return failure({ status: false, body: e.message});
+		return failure({ status: false, message: e.message, filename: e.filename, lineNumber: e.lineNumber});
 	}
 }
