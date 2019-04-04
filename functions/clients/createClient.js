@@ -14,7 +14,8 @@ export async function main(event, context) {
             name: content.name,
             type: content.type || null, // Residential or Commercial
             email: content.email || null,
-            createdAt: Date.now()
+            createdAt: Date.now(),
+            modifiedAt: null
         }
     }
 

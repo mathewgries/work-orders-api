@@ -16,7 +16,8 @@ export async function main(event, context) {
             quanity: content.quanity,
             unitPrice: content.unitPrice,
             total: content.total,
-            createdAt: Date.now()
+            createdAt: Date.now(),
+            modifiedAt: null
         }
     }
 

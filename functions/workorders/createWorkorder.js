@@ -13,7 +13,8 @@ export async function main(event, context) {
 			userId: event.requestContext.identity.cognitoIdentityId,
 			title: content.title,
 			description: content.description,
-			createdAt: Date.now()
+			createdAt: Date.now(),
+			modifiedAt: null
 		}
 	};
 

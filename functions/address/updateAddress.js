@@ -19,7 +19,8 @@ export async function main(event, context) {
                 city = :city,
                 state = :state
                 zipCode = :zipCode,
-                zipCodeAppend = :zipCodeAppend`,
+                zipCodeAppend = :zipCodeAppend,
+                modifiedAt = :modified`,
         ExpressionAttributeValues: {
             ":addressType": content.addressType,
             ":country": content.country,
@@ -28,7 +29,8 @@ export async function main(event, context) {
             ":city": content.city,
             ":state": content.state,
             ":zipCode": content.zipCode,
-            ":zipCodeAppend": content.zipCodeAppend || null
+            ":zipCodeAppend": content.zipCodeAppend || null,
+            ":modified": Date.now()
         },
         ReturnValue: "ALL_NEW"
     }

@@ -14,7 +14,8 @@ export async function main(event, context) {
             phoneType: content.phoneType,
             phonenumber: content.phonenumber,
             countryCode: content.countryCode,
-            createdAt: Date.now()
+            createdAt: Date.now(),
+            modifiedAt: null
         }
     }
 

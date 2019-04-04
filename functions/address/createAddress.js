@@ -19,7 +19,8 @@ export async function main(event, context) {
             state: content.state,
             zipCode: content.zipCode,
             zipCode4: content.zipCodeAppend || null,
-            createdAt: Date.now()
+            createdAt: Date.now(),
+            modifiedAt: null
         }
     }
 

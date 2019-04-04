@@ -14,11 +14,13 @@ export async function main(event, context) {
         UpdateExpression: `
             SET phoneType = :phoneType,
                 countryCode = :countryCode,
-                phonenumber = :phonenumber`,
+                phonenumber = :phonenumber,
+                modifiedAt = :modified`,
         ExpressionAttributeValues: {
             ":phoneType": content.phoneType,
             ":countryCode": content.countryCode,
-            ":phonenumber": content.phonenumber
+            ":phonenumber": content.phonenumber,
+            ":modified": Date.now()
         },
         ReturnValue: "ALL_NEW"
     }

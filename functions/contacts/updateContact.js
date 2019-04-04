@@ -16,12 +16,14 @@ export async function main(event, context) {
             #cn = :cn,
             email = :e,
             preferredContactMethod = :pcm,
-            clientId = :clientId`,
+            clientId = :clientId,
+            modifiedAt = :modified`,
         ExpressionAttributeValues: {
             ":cn": content.name,
             ":e": content.email || null,
             ":pcm": content.preferredContactMethod,
-            ":clientId": clientId
+            ":clientId": content.clientId || null,
+            ":modified": Date.now()
         },
         ExpressionAttributeNames: {
 			"#cn": "name",
