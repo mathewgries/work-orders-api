@@ -12,13 +12,20 @@ export async function main(event, context) {
             userId: event.requestContext.identity.cognitoIdentityId,
             contactId: content.contactId
         },
-        UpdateExpression: "SET name = :name, email = :email, preferredContact = :preferredContact, clientId = :clientId",
+        UpdateExpression: `SET 
+            #cn = :cn,
+            email = :e,
+            preferredContactMethod = :pcm,
+            clientId = :clientId`,
         ExpressionAttributeValues: {
-            ":name": content.name,
-            ":email": content.email || null,
-            ":preferredContactMethod": content.preferredContactMethod,
+            ":cn": content.name,
+            ":e": content.email || null,
+            ":pcm": content.preferredContactMethod,
             ":clientId": clientId
         },
+        ExpressionAttributeNames: {
+			"#cn": "name",
+		},
         ReturnValues: "ALL_NEW"
     }
 

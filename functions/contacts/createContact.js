@@ -9,7 +9,8 @@ export async function main(event, context){
         TableName: process.env.workordersContactsTable,
         Item: {
             userId: event.requestContext.identity.cognitoIdentityId,
-            name: content.name,
+            clientId: content.clientId || null,
+            contactName: content.name,
             email: content.email || null,
             preferredContactMethod: content.preferredContactMethod,
             createAt: Date.now()

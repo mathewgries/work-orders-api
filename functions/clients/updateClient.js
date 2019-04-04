@@ -15,9 +15,9 @@ export async function main(event, context) {
 		// 'UpdateExpression' defines the attributes to be updated
 		// 'ExpressionAttributeValues' defines the value in the update expression
 		UpdateExpression: `SET 
-			#n = :n, 
-			#t = :t, 
-			email = :email, 
+			#n = :n,
+			#t = :t,
+			email = :email,
 			modifiedAt = :modifiedAt`,
 		ExpressionAttributeValues: {
 			":n": data.name || null,
