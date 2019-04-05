@@ -8,8 +8,6 @@ Resources:
           AttributeType: S
         - AttributeName: userId
           AttributeType: S
-        - AttributeName: clientId
-          AttributeType: S
       KeySchema:
         - AttributeName: userId
           KeyType: HASH
