@@ -22,8 +22,8 @@ export async function main(event, context) {
 			modifiedAt = :modifiedAt`,
 		ExpressionAttributeValues: {
 			":title": data.title || null,
-			":clientId": data.clientId || null,
-			":contactId": data.contactId || null,
+			":clientId": data.client.clientId || null,
+			":contactId": data.contact.contactId || null,
 			":description": data.description || null,
 			":modifiedAt": Date.now()
 		},
