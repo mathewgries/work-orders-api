@@ -11,6 +11,8 @@ export async function main(event, context) {
 		Item: {
 			workorderId: uuid.v1(),
 			userId: event.requestContext.identity.cognitoIdentityId,
+			clientId: content.clientId || null,
+			contactId: content.contactId || null,
 			title: content.title,
 			description: content.description,
 			createdAt: Date.now(),
