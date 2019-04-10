@@ -10,7 +10,8 @@ export async function main(event, context) {
         Item: {
             phonenumberId: content.phonenumberId,
             userId: event.requestContext.identity.cognitoIdentityId,
-            clientId: content.clientId,
+            relationId: content.relationId,
+            relationType: content.relationType, // 1. Client, 2. Contact
             phoneType: content.phoneType,
             phonenumber: content.phonenumber,
             countryCode: content.countryCode,

@@ -10,7 +10,8 @@ export async function main(event, context) {
         Item: {
             addressId: content.addressId,
             userId: event.requestContext.identity.cognitoIdentityId,
-            clientId: content.clientId,
+            relationId: content.relationId,
+            relationType: content.relationType, // 1. Client, 2. Contact
             addressType: content.addressType, // Mailing or Billing
             country: content.country,
             line1: content.line1,
