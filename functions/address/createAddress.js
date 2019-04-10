@@ -1,5 +1,6 @@
 import * as dynamodbLib from '../../libs/dynamodb-lib'
 import { success, failure } from '../../libs/response-lib'
+import uuid from 'uuid'
 
 export async function main(event, context) {
     const data = JSON.parse(event.body)
@@ -8,7 +9,7 @@ export async function main(event, context) {
     const params = {
         TableName: process.env.workordersAddressTable,
         Item: {
-            addressId: content.addressId,
+            addressId: uuid.v1(),
             userId: event.requestContext.identity.cognitoIdentityId,
             relationId: content.relationId,
             relationType: content.relationType, // 1. Client, 2. Contact
