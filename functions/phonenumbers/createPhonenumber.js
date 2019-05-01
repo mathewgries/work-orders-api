@@ -25,6 +25,6 @@ export async function main(event, context) {
         await dynamodbLib.call("put", params)
         return success(params.Item)
     } catch (e) {
-        return failure({ status: false })
+        return failure({ status: false, error: e})
     }
 }
