@@ -26,7 +26,7 @@ getPhonenumbers:
         cors: true
         authorizer: aws_iam
 
-listPhonenumberses:
+listPhonenumbers:
   # Defines an HTTP API endpoint that calls the main function in list.js
   # - path: url path is /phonenumbers
   # - method: GET request
