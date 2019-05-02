@@ -13,8 +13,8 @@ custom:
   workordersClientsTable: ${self:custom.stage}-workordersClients
   workordersItemsTable: ${self:custom.stage}-workordersItems
   workordersContactsTable: ${self:custom.stage}-workordersContacts 
-  #workordersAddressTable: ${self:custom.stage}-workordersAddress
-  #workordersPhonenumbersTable: ${self:custom.stage}-workordersPhonenumbers
+  workordersAddressTable: ${self:custom.stage}-workordersAddress
+  workordersPhonenumbersTable: ${self:custom.stage}-workordersPhonenumbers
   tableThroughputs:
     prod: 5
     default: 1
@@ -36,8 +36,8 @@ provider:
     workordersClientsTable: ${self:custom.workordersClientsTable}
     workordersItemsTable: ${self:custom.workordersItemsTable}
     workordersContactsTable: ${self:custom.workordersContactsTable} 
-    #workordersAddressTable: ${self:custom.workordersAddressTable}
-    #workordersPhonenumbersTable: ${self:custom.workordersPhonenumbersTable}
+    workordersAddressTable: ${self:custom.workordersAddressTable}
+    workordersPhonenumbersTable: ${self:custom.workordersPhonenumbersTable}
 
   iamRoleStatements:
     - Effect: Allow
@@ -56,16 +56,16 @@ provider:
         - "Fn::GetAtt": [ WorkordersClientsTable, Arn]
         - "Fn::GetAtt": [ WorkordersItemsTable, Arn]
         - "Fn::GetAtt": [ WorkordersContactsTable, Arn]
-        #- "Fn::GetAtt": [ WorkordersAddressTable, Arn]
-        #- "Fn::GetAtt": [ WorkordersPhonenumbersTable, Arn]
+        - "Fn::GetAtt": [ WorkordersAddressTable, Arn]
+        - "Fn::GetAtt": [ WorkordersPhonenumbersTable, Arn]
 
 functions:
   - ${file(functions/workorders/functions.yml)}
   - ${file(functions/clients/functions.yml)}
   - ${file(functions/contacts/functions.yml)}
   - ${file(functions/workordersItems/functions.yml)}
-  #- ${file(functions/address/functions.yml)}
-  #- ${file(functions/phonenumbers/functions.yml)}
+  - ${file(functions/address/functions.yml)}
+  - ${file(functions/phonenumbers/functions.yml)}
   
 resources:
   # API Gateway Errors
@@ -75,8 +75,8 @@ resources:
   - ${file(resources/tables/clients-table.yml)}
   - ${file(resources/tables/workorders-items-table.yml)}
   - ${file(resources/tables/contacts-table.yml)}
-  #- ${file(resources/tables/address-table.yml)}
-  #- ${file(resources/tables/phonenumbers-table.yml)}
+  - ${file(resources/tables/address-table.yml)}
+  - ${file(resources/tables/phonenumbers-table.yml)}
   # S3
   - ${file(resources/buckets/s3-bucket.yml)}
   # Cognito
