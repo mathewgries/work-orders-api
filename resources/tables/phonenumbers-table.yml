@@ -4,12 +4,12 @@ Resources:
     Properties:
       TableName: ${self:custom.workordersPhonenumbersTable}
       AttributeDefinitions:
+        - AttributeName: userId
+          AttributeType: S
         - AttributeName: phonenumberId
           AttributeType: S
-        - AttributeName: relationId
-          AttributeType: S
       KeySchema:
-        - AttributeName: relationId
+        - AttributeName: userId
           KeyType: HASH
         - AttributeName: phonenumberId
           KeyType: RANGE
