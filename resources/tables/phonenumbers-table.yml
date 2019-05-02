@@ -6,10 +6,10 @@ Resources:
       AttributeDefinitions:
         - AttributeName: phonenumberId
           AttributeType: S
-        - AttributeName: clientId
+        - AttributeName: relationId
           AttributeType: S
       KeySchema:
-        - AttributeName: clientId
+        - AttributeName: relationId
           KeyType: HASH
         - AttributeName: phonenumberId
           KeyType: RANGE
