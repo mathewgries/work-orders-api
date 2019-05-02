@@ -9,8 +9,8 @@ export async function main(event, context){
         TableName: process.env.workordersAddressTable,
         KeyConditionExpression: "relationId = :relationId",
         ExpressionAttributeValues: {
-            ":relationId": content.relationId
-        }
+			":userId": event.requestContext.identity.cognitoIdentityId
+		}
     }
 
     try {

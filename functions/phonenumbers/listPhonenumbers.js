@@ -7,10 +7,10 @@ export async function main(event, context){
 
     const params = {
         TableName: process.env.workordersPhonenumberTable,
-        KeyConditionExpression: "relationId = :relationId",
+        KeyConditionExpression: "userId = :userId",
         ExpressionAttributeValues: {
-            ":relationId": content.relationId
-        }
+			":userId": event.requestContext.identity.cognitoIdentityId
+		}
     }
 
     try {
