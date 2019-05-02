@@ -17,6 +17,6 @@ export async function main(event, context){
         const result = await dynamodbLib.call("query", params)
         return success(result.Items)
     } catch (e) {
-        return failure({ status: false })
+        return failure({ status: false, error: e })
     }
 }
