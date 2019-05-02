@@ -7,9 +7,9 @@ export async function main(event, context){
 
     const params = {
         TableName: process.env.workordersPhonenumberTable,
-        KeyConditionExpression: "clientId = :clientId",
+        KeyConditionExpression: "relationId = :relationId",
         ExpressionAttributeValues: {
-            ":clientId": content.clientId
+            ":relationId": content.relationId
         }
     }
 

@@ -8,7 +8,7 @@ export async function main(event, body) {
     const params = {
         TableName: process.env.workordersPhonenumbersTable,
         Key: {
-            clientId: content.clientId,
+            relationId: content.relationId,
             phonenumberId: content.phonenumberId
         }
     }
